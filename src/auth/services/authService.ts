@@ -4,6 +4,7 @@ import axios, { AxiosResponse } from "axios";
 import axiosInstance from "../../utils/axiosInstance";
 import { CurrentUserInterface } from "../types/currentUser.interface";
 import { RegisterRequestInterface } from "../types/registerRequest.interface";
+import { LoginRequestInterface } from "../types/loginRequest.interface";
 /*
 interface User {
     id: number;
@@ -49,6 +50,14 @@ export const register = async (
     registerRequest: RegisterRequestInterface
 ): Promise<CurrentUserInterface> => {
     return axiosInstance.post("/api/users", registerRequest).then((res) => {
+        return res.data;
+    });
+};
+
+export const login = async (
+    loginRequest: LoginRequestInterface
+): Promise<CurrentUserInterface> => {
+    return axiosInstance.post("/api/users/login", loginRequest).then((res) => {
         return res.data;
     });
 };
