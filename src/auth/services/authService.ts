@@ -1,6 +1,9 @@
+// import { getCurrentUser } from './authService';
 import React from "react";
 import axios, { AxiosResponse } from "axios";
 import axiosInstance from "../../utils/axiosInstance";
+import { CurrentUserInterface } from "../types/currentUser.interface";
+import { RegisterRequestInterface } from "../types/registerRequest.interface";
 /*
 interface User {
     id: number;
@@ -27,6 +30,7 @@ export const useGetCurrentUser = async () => {
     }, []);
 };
 */
+/*
 export const getCurrentUser = async () => {
     try {
         const res = await axiosInstance.get("/api/user");
@@ -34,4 +38,22 @@ export const getCurrentUser = async () => {
     } catch (message) {
         return console.log(message);
     }
+};
+*/
+//return a Promise
+export const getCurrentUser = async (): Promise<CurrentUserInterface> => {
+    // try {
+    //     const res = await axiosInstance.get("/api/user");
+    //     return res.data;
+    // } catch (message) {
+    //     return console.log(message);
+    // }
+    return axiosInstance.get("/api/user");
+    // return await axiosInstance.get("/api/user").then((res) => res.data);
+};
+
+export const register = async (
+    registerRequest: RegisterRequestInterface
+): Promise<CurrentUserInterface> => {
+    return axiosInstance.post("/api/users", registerRequest);
 };
