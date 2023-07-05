@@ -42,18 +42,13 @@ export const getCurrentUser = async () => {
 */
 //return a Promise
 export const getCurrentUser = async (): Promise<CurrentUserInterface> => {
-    // try {
-    //     const res = await axiosInstance.get("/api/user");
-    //     return res.data;
-    // } catch (message) {
-    //     return console.log(message);
-    // }
-    // return axiosInstance.get("/api/user");
     return axiosInstance.get("/api/user").then((res) => res.data);
 };
 
 export const register = async (
     registerRequest: RegisterRequestInterface
 ): Promise<CurrentUserInterface> => {
-    return axiosInstance.post("/api/users", registerRequest);
+    return axiosInstance.post("/api/users", registerRequest).then((res) => {
+        return res.data;
+    });
 };
