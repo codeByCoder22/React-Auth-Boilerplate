@@ -10,6 +10,7 @@ import React, {
 import { CurrentUserInterface } from "../types/currentUser.interface";
 import axiosInstance from "../../utils/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import * as authService from "./authService";
 
 interface AuthContextType {
     currentUser: CurrentUserInterface | null;
@@ -52,6 +53,7 @@ export const AuthProvider: FC<
     }, []);
 */
     useEffect(() => {
+        /*
         const fetchUser = async (): Promise<void> => {
             try {
                 const response = await axiosInstance.get<CurrentUserInterface>(
@@ -70,7 +72,24 @@ export const AuthProvider: FC<
             }
         };
 
-        fetchUser();
+        fetchUser();*/
+        authService
+            .getCurrentUser()
+            .then((currentUser) => {
+                console.log("currentUser", currentUser);
+                setCurrentUser(currentUser);
+                setIsLogged(true);
+                navigate("/board");
+                console.log("response.data", currentUser);
+            })
+            .catch((error) => {
+                console.error("Error fetching user:", error);
+                setCurrentUser(null);
+                setIsLogged(false);
+            })
+            .finally(() => {
+                console.log("finally");
+            });
     }, []);
 
     const authContextValue: AuthContextType = {

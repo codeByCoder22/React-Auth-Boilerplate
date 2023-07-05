@@ -89,7 +89,7 @@ const Login: React.FC = () => {
                     />
                 </div>
 
-                <button type="submit">Register</button>
+                <button type="submit">Login</button>
                 {/* {error && <p>{error}</p>} */}
                 {error && (
                     <ul>
