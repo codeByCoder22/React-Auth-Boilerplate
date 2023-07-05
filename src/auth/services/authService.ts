@@ -48,8 +48,8 @@ export const getCurrentUser = async (): Promise<CurrentUserInterface> => {
     // } catch (message) {
     //     return console.log(message);
     // }
-    return axiosInstance.get("/api/user");
-    // return await axiosInstance.get("/api/user").then((res) => res.data);
+    // return axiosInstance.get("/api/user");
+    return await axiosInstance.get("/api/user").then((res) => res.data);
 };
 
 export const register = async (
