@@ -25,10 +25,6 @@ const Login: React.FC = () => {
     const { currentUser, setCurrentUser, isLogged, setIsLogged } =
         useAuthContext();
 
-    const setToken = (token: string): void => {
-        localStorage.setItem("token", token);
-    };
-
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
@@ -41,7 +37,7 @@ const Login: React.FC = () => {
         authService
             .login(loginRequest)
             .then((currentUser) => {
-                setToken(currentUser.token);
+                authService.setToken(currentUser);
                 setCurrentUser(currentUser);
                 setIsLogged(true);
                 setError("");

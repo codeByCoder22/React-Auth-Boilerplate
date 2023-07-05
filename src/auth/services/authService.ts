@@ -61,3 +61,7 @@ export const login = async (
         return res.data;
     });
 };
+
+export const setToken = (currentUser: CurrentUserInterface): void => {
+    localStorage.setItem("token", currentUser.token);
+};
