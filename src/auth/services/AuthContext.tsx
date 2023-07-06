@@ -6,7 +6,6 @@ import React, {
     FC,
     PropsWithChildren,
 } from "react";
-// import { getCurrentUser } from "./authService";
 import { CurrentUserInterface } from "../types/currentUser.interface";
 import axiosInstance from "../../utils/axiosInstance";
 import { useNavigate } from "react-router-dom";
@@ -38,41 +37,7 @@ export const AuthProvider: FC<
     const [isLogged, setIsLogged] = useState<boolean>(false);
     const navigate = useNavigate();
 
-    /*
     useEffect(() => {
-        const fetchUser = async (): Promise<void> => {
-            try {
-                const response = await getCurrentUser();
-                setCurrentUser(response.data);
-            } catch (error) {
-                console.error("Error fetching user:", error);
-            }
-        };
-
-        fetchUser();
-    }, []);
-*/
-    useEffect(() => {
-        /*
-        const fetchUser = async (): Promise<void> => {
-            try {
-                const response = await axiosInstance.get<CurrentUserInterface>(
-                    "/api/user"
-                );
-                setCurrentUser(response.data);
-                setIsLogged(true);
-                navigate("/board");
-                console.log("response.data", response.data);
-            } catch (error) {
-                console.error("Error fetching user:", error);
-                setCurrentUser(null);
-                setIsLogged(false);
-            } finally {
-                console.log("finally");
-            }
-        };
-
-        fetchUser();*/
         authService
             .getCurrentUser()
             .then((currentUser) => {
