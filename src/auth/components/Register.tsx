@@ -1,18 +1,9 @@
 import React, { useState } from "react";
-// import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { RegisterRequestInterface } from "../types/registerRequest.interface";
-import axiosInstance from "../../utils/axiosInstance";
 import { useAuthContext } from "../services/AuthContext";
 import * as authService from "../services/authService";
-
-interface CurrentUserInterface {
-    id: string;
-    token: string;
-    username: string;
-    email: string;
-}
 
 const Register: React.FC = () => {
     const navigate = useNavigate();
