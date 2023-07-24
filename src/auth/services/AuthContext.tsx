@@ -56,6 +56,7 @@ export const AuthProvider: FC<
             })
             .finally(() => {
                 console.log("finally");
+                setFetchingUser(false);
             });
                     };
         // Check if currentUser is null (not fetched yet) and fetchingUser is true (fetch request not already made)
