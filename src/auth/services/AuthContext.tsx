@@ -35,9 +35,11 @@ export const AuthProvider: FC<
         null
     );
     const [isLogged, setIsLogged] = useState<boolean>(false);
+    const [fetchingUser, setFetchingUser] = useState<boolean>(true);
     const navigate = useNavigate();
 
     useEffect(() => {
+        const fetchCurrentUser = async () => {
         authService
             .getCurrentUser()
             .then((currentUser) => {
@@ -55,7 +57,12 @@ export const AuthProvider: FC<
             .finally(() => {
                 console.log("finally");
             });
-    }, []);
+                    };
+        // Check if currentUser is null (not fetched yet) and fetchingUser is true (fetch request not already made)
+        if (!currentUser && fetchingUser) {
+            fetchCurrentUser();
+        }
+    }, [currentUser, fetchingUser]);
 
     const authContextValue: AuthContextType = {
         currentUser,
